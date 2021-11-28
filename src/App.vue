@@ -1,16 +1,25 @@
-<script setup>
-    import Todos from './components/Todos.vue';
+<script>
+    import NavBar from './components/NavBar.vue';
+    export default {
+        name: 'App',
+        components: {
+            NavBar
+        }
+    }
 </script>
 
 <template>
-    <Todos />
+   <div>
+       <NavBar />
+        <router-view></router-view>
+   </div>
 </template>
 
 <style>
     body {
-        font-family: 'Courier New', sans-serif, Courier, monospace;
+        font-family: 'Roboto','Courier New', sans-serif, Courier, monospace;
         max-width: 500px;
-        margin: 5rem auto;
+        margin: 1rem auto;
     }
     * {
         margin-top: 0.5rem;

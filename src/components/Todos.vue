@@ -4,7 +4,7 @@
     </div>
     <TodoForm @form-submitted="addTodo" />
     <div v-for="todo in todos" :key="todo.id" @dblclick="deleteTodo(todo.id)">
-        <button @click="editTodoId = todo.id">Edit</button> {{ todo.id }} - {{ todo.text }}
+        <button @click="editTodoId = todo.id" class="bg-black text-white px-4">Edit</button> {{ todo.id }} - {{ todo.text }}
     </div>
 
     <div v-if="!!editTodoId">
