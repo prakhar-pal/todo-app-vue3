@@ -1,6 +1,6 @@
 <template>
     <form @submit.prevent="submitForm">
-        <input type="text" v-model="todo" class="todo-text"/>
+        <input type="text" v-model="todo" class="todo-text px-2" placeholder="i.e. pet the cat"/>
         <input type="submit" :value="submitBtnLabel" class="submit-button" />
     </form>
 </template>

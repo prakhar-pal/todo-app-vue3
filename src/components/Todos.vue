@@ -1,8 +1,8 @@
 <template>
-    <div v-if="todos.length === 0">
-        There're no todos!
-    </div>
     <TodoForm @form-submitted="addTodo" />
+    <div v-if="todos.length === 0">
+        No todos, yet!
+    </div>
     <div v-for="todo in todos" :key="todo.id" @dblclick="deleteTodo(todo.id)">
         <button @click="editTodoId = todo.id" class="bg-black text-white px-4">Edit</button> {{ todo.id }} - {{ todo.text }}
     </div>
