@@ -38,6 +38,7 @@
         methods: {
             submitForm(){
                 this.$emit('form-submitted', this.todo);
+                this.todo = '';
             }
         }
     }

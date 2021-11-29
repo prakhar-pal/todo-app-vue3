@@ -1,5 +1,8 @@
 <template>
-    <TodoForm @form-submitted="addTodo" />
+    <div class="flex flex-col">
+        <TodoForm @form-submitted="handleSubmit" />
+        <TodosCounter />
+    </div>
     <div v-if="todos.length === 0">
         No todos, yet!
     </div>
@@ -17,27 +20,30 @@
     </div>
 </template>
 <script>
-    import TodoForm from './TodoForm.vue';
-    export default {
+import { mapState, mapActions } from 'vuex';
+import TodoForm from './TodoForm.vue';
+import TodosCounter from './TodosCounter.vue';
+export default {
     name: "todo",
+    components: { TodoForm, TodosCounter },
     data() {
         return {
             id: 1,
-            editTodoId: null,
-            todo: "",
-            todos: []
+            editTodoId: null
         };
     },
     computed: {
+        ...mapState(['todos']),
         editingTodo () {
             return this.todos.find(todo => todo.id === this.editTodoId);
         }
     },
     methods: {
-        addTodo(text) {
+        ...mapActions(['addTodo']),
+        handleSubmit(text) {
             let newTodo = { id: this.id, text  };
             this.id++;
-            this.todos.push(newTodo);
+            this.addTodo(newTodo);
         },
         deleteTodo(id) {
             this.todos = this.todos.filter(todo => todo.id !== id);
@@ -48,6 +54,5 @@
             this.editTodoId = null;
         }
     },
-    components: { TodoForm }
 }
 </script>
