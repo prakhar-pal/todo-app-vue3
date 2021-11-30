@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent="submitForm">
+    <form @submit.prevent="submitForm" class="d-flex">
         <input type="text" v-model="todo" class="todo-text px-2" placeholder="i.e. pet the cat"/>
         <input type="submit" :value="submitBtnLabel" class="submit-button" />
     </form>
