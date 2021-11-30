@@ -9,10 +9,10 @@
 </script>
 
 <template>
-   <div>
+    <div class="p-4">
        <NavBar />
         <router-view></router-view>
-   </div>
+    </div>
 </template>
 
 <style>

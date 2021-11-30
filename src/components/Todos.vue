@@ -3,9 +3,6 @@
         <TodoForm @form-submitted="handleSubmit" />
         <TodosCounter />
     </div>
-    <div v-if="todos.length === 0">
-        No todos, yet!
-    </div>
     <div v-for="todo in todos" :key="todo.id" @dblclick="deleteTodo(todo.id)">
         <button @click="editTodoId = todo.id" class="bg-black text-white px-4">Edit</button> {{ todo.id }} - {{ todo.text }}
     </div>
@@ -39,7 +36,7 @@ export default {
         }
     },
     methods: {
-        ...mapActions(['addTodo']),
+        ...mapActions(['addTodo', 'updateTodo']),
         handleSubmit(text) {
             let newTodo = { id: this.id, text  };
             this.id++;
@@ -49,8 +46,7 @@ export default {
             this.todos = this.todos.filter(todo => todo.id !== id);
         },
         editTodo(text) {
-            const todo = this.todos.find(todo => todo.id === this.editTodoId);
-            todo.text = text;
+            this.updateTodo({ id: this.editTodoId, text});
             this.editTodoId = null;
         }
     },
