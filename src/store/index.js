@@ -1,6 +1,6 @@
 import { createStore } from 'vuex';
 import actionTypes from './actionTypes';
-// import actions from './actions';
+import actions from './actions';
 // import mutations from './mutations';
 
 const initialState = {
@@ -15,16 +15,15 @@ const store = createStore({
         [actionTypes.UPDATE_TODO](state, {id, text}){
             const todo = state.todos.find(todo => todo.id === id);
             todo.text = text;
+        },
+        [actionTypes.DELETE_TODO](state, id) {
+            const index = state.todos.findIndex(todo => todo.id === id);
+            if(index>=0){
+                state.todos.splice(index,1);
+            }
         }
     },
-    actions: {
-        addTodo({ commit }, todo) {
-            commit(actionTypes.ADD_TODO, todo);
-        },
-        updateTodo({ commit }, payload){
-            commit(actionTypes.UPDATE_TODO, payload);
-        }
-    }
+    actions
 });
 
 export default store;

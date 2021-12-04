@@ -14,6 +14,7 @@
 
 <style scoped>
     li.nav-link {
+        padding: 0 5px;
         border-bottom: 2px solid transparent;
     }
     li.active {
