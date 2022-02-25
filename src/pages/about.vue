@@ -2,8 +2,7 @@
     <div class="max-w-lg mx-auto">
         <h3 class="text-xl text-center">A todo app written in VueJS 3</h3>
         <div class="max-w-sm my-4 mx-auto px-4 pb-8 about-details">
-            <div>It has following features - </div>
-            <hr />
+            <h5 class="mt-4 mb-2">It has following features - </h5>
             <ol class="mb-4 ml-8">
                 <li>
                     Routing with: vue-router

@@ -32,8 +32,11 @@
         },
         data() {
             return {
-                todo: this.$props.initialTodo || ''
+                todo: []
             }
+        },
+        mounted(){
+            this.todo = this.initialTodo;
         },
         methods: {
             submitForm(){

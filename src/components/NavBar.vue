@@ -8,7 +8,7 @@
                 <router-link :to="link.path">{{ link.title}}</router-link>
             </li>
         </ul>
-        <hr class="border-t-8 border-gray-600"/>
+        <hr class="border-t-8 border-gray-600 my-2"/>
     </nav>
 </template>
 

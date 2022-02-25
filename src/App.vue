@@ -21,8 +21,4 @@
         max-width: 500px;
         margin: 1rem auto;
     }
-    * {
-        margin-top: 0.5rem;
-        margin-bottom: 0.5rem;
-    }
 </style>

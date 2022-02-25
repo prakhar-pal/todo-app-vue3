@@ -3,11 +3,11 @@
         <TodoForm @form-submitted="handleAddTodo" />
         <TodosCounter />
     </div>
-    <div v-for="todo in todos" :key="todo.id" @dblclick="deleteTodo(todo.id)">
+    <div v-for="todo in todos" :key="todo.id" @dblclick="deleteTodo(todo.id)" class="todo-details">
         <button @click="editTodoId = todo.id" class="bg-black text-white px-4">Edit</button> 
-        <span class="todo-details ml-2 inline-block">
+        <span class="ml-2 inline-block">
             {{ todo.id }} - {{ todo.text }}
-            <button @click="deleteTodo(todo.id)" class="btn-delete-todo">X</button>
+            <button @click="deleteTodo(todo.id)" class="btn-delete-todo">-</button>
         </span>
     </div>
 
@@ -25,7 +25,7 @@
     .todo-details {
         padding: 0.5rem;   
     }
-    .todo-details > .btn-delete-todo {
+    .todo-details .btn-delete-todo {
         display: none;
         width: 1.5rem;
         height: 1.5rem;
@@ -34,12 +34,12 @@
         transition: all 0.5s;
     }
 
-    .todo-details:hover > .btn-delete-todo {
+    .todo-details:hover .btn-delete-todo {
         display: inline;
-        background-color: rgb(206, 70, 70);
+        background-color: rgb(226, 3, 3);
     }
-    .todo-details:hover > .btn-delete-todo:hover {
-        background-color: rgb(163, 17, 17);
+    .todo-details:hover .btn-delete-todo:hover {
+        background-color: rgb(226, 3, 3);
         color: white;
     }
 </style>
