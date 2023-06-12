@@ -3,16 +3,9 @@
     <div v-else>No todos, yet!</div>
 </template>
 
-<script>
-import { mapState } from "vuex";
-
-export default {
-    name: 'TodosCounter',
-    computed: {
-        ...mapState(['todos']),
-        totalTodos(){
-            return this.todos.length;
-        }
-    }
-}
+<script setup>
+import { computed } from "vue";
+import { useStore } from "vuex";
+const store = useStore();
+const totalTodos = computed(() => store.state.todos.length);
 </script>
