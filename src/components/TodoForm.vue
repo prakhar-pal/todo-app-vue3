@@ -1,7 +1,7 @@
 <template>
     <form @submit.prevent="submitForm" class="d-flex">
-        <input type="text" v-model="todo" class="todo-text px-2" placeholder="i.e. pet the cat"/>
-        <input type="submit" :value="submitBtnLabel" class="submit-button" />
+        <input type="text" v-model="state.todo" class="todo-text px-2" placeholder="i.e. pet the cat"/>
+        <input type="submit" :value="props.submitBtnLabel" class="submit-button" />
     </form>
 </template>
 
@@ -21,28 +21,28 @@
     }
 </style>
 
-<script>
-    export default {
-        props: {
-            initialTodo: String,
-            submitBtnLabel: {
-                type: String,
-                default: "Submit"
-            }
-        },
-        data() {
-            return {
-                todo: []
-            }
-        },
-        mounted(){
-            this.todo = this.initialTodo;
-        },
-        methods: {
-            submitForm(){
-                this.$emit('form-submitted', this.todo);
-                this.todo = '';
-            }
-        }
+<script setup>
+import { reactive, defineEmits, watch } from 'vue';
+
+const props = defineProps({
+    initialTodo: {
+        type: String,
+        default: '',
+    },
+    submitBtnLabel: {
+        type: String,
+        default: "Submit"
     }
+});
+
+const $emit = defineEmits(['form-submitted']);
+
+const state = reactive({
+    todo: props.initialTodo ?? ''
+});
+
+function submitForm(){
+    $emit('form-submitted', state.todo);
+    state.todo = '';
+}
 </script>

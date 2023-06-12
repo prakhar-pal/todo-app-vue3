@@ -22,7 +22,9 @@
     }
 </style>
 
-<script>
+<script setup>
+    import { useRoute } from 'vue-router';
+    import { computed } from 'vue';
     let navLinks = [
         {
             title: 'Home',
@@ -32,23 +34,13 @@
             path: '/about'
         }
     ];
-    export default {
-        name: 'NavBar',
-        data() {
-            return { navLinks };
-        },
-        computed: {
-            currentPath() {
-                return this.$route.path;
-            }
-        },
-        methods: {
-            getClassForLinkItem(link, index){
-                let cls = '';
-                if(index != 0) cls+= ' mx-2';
-                if(link.path == this.currentPath) cls+= ' active';
-                return cls;
-            }
-        }
+    const route = useRoute();
+    const currentPath = computed(() => route.path);
+
+    function getClassForLinkItem(link, index){
+        let cls = '';
+        if(index != 0) cls+= ' mx-2';
+        if(link.path === currentPath.value) cls+= ' active';
+        return cls;
     }
 </script>
