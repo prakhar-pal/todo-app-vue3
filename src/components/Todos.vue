@@ -4,15 +4,15 @@
         <TodosCounter />
     </div>
     <div v-for="todo in todos" :key="todo.id" @dblclick="deleteTodo(todo.id)" class="todo-details">
-        <button @click="editTodoId = todo.id" class="bg-black text-white px-4">Edit</button> 
+        <button @click="onEditTodoClick(todo.id)" class="bg-black text-white px-4">Edit</button> 
         <span class="ml-2 inline-block">
             {{ todo.id }} - {{ todo.text }}
             <button @click="deleteTodo(todo.id)" class="btn-delete-todo">-</button>
         </span>
     </div>
 
-    <div v-if="!!editTodoId">
-        Edit todo: {{ editTodoId }}
+    <div v-if="!!state.editTodoId">
+        Edit todo: {{ state.editTodoId }}
         <TodoForm
             submit-btn-label="Edit"
             :initial-todo="editingTodo ? editingTodo.text: ''"
@@ -44,36 +44,35 @@
     }
 </style>
 
-<script>
-import { mapState, mapActions } from 'vuex';
+<script setup>
+import { useStore } from 'vuex';
 import TodoForm from './TodoForm.vue';
 import TodosCounter from './TodosCounter.vue';
-export default {
-    name: "todo",
-    components: { TodoForm, TodosCounter },
-    data() {
-        return {
-            id: 1,
-            editTodoId: null
-        };
-    },
-    computed: {
-        ...mapState(['todos']),
-        editingTodo () {
-            return this.todos.find(todo => todo.id === this.editTodoId);
-        }
-    },
-    methods: {
-        ...mapActions(['addTodo', 'updateTodo', 'deleteTodo']),
-        handleAddTodo(text) {
-            let newTodo = { id: this.id, text  };
-            this.id++;
-            this.addTodo(newTodo);
-        },
-        editTodo(text) {
-            this.updateTodo({ id: this.editTodoId, text});
-            this.editTodoId = null;
-        }
-    },
+import { computed, reactive } from 'vue';
+const store = useStore();
+const state = reactive({
+    id: 1,
+    editTodoId: null
+});
+
+const todos = computed(() => store.state.todos)
+const editingTodo = computed(() => todos.value.find(todo => todo.id === state.editTodoId));
+const addTodo = (newTodo) => store.dispatch('addTodo', newTodo);
+
+function updateTodo (newTodo) {
+    store.dispatch('updateTodo', newTodo);
+    state.editTodoId = null;
 }
+function handleAddTodo(text) {
+    let newTodo = { id: state.id, text  };
+    state.id++;
+    addTodo(newTodo);
+}
+function editTodo(text) {
+    updateTodo({ id: state.editTodoId, text});
+    state.editTodoId = null;
+}
+
+const deleteTodo = (id) => store.dispatch('deleteTodo', id);
+const onEditTodoClick = (id) => state.editTodoId = id;
 </script>
