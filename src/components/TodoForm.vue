@@ -1,28 +1,27 @@
 <template>
     <form @submit.prevent="submitForm" class="d-flex">
-        <input type="text" v-model="state.todo" class="todo-text px-2" placeholder="i.e. pet the cat"/>
-        <input type="submit" :value="props.submitBtnLabel" class="submit-button" />
+        <input
+            type="text"
+            v-model="state.todo"
+            class="todo-text px-2 border border-gray-500 rounded-sm"
+            placeholder="i.e. pet the cat"
+        />
+        <input
+            type="submit"
+            :value="props.submitBtnLabel"
+            class="submit-button border border-solid rounded-sm border-green-950 box-border m-0.5 px-2 self-start"
+        />
     </form>
 </template>
 
-<style>
-    .todo-text {
-        border: 2px solid #333;
-        border-radius: 2px;
-    }
-
+<style scoped>
     .submit-button {
-        border: 2px solid teal;
-        border-radius: 2px;
-        box-sizing: border-box;
-        margin: 2px;
-        padding: 0 8px;
-        align-self: center;
+        border-color: teal;
     }
 </style>
 
 <script setup>
-import { reactive, defineEmits, watch } from 'vue';
+import { reactive, defineEmits } from 'vue';
 
 const props = defineProps({
     initialTodo: {
