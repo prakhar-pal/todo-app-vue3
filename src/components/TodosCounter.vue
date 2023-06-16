@@ -1,6 +1,8 @@
 <template>
-    <div v-if="totalTodos > 0"> Total todos: {{ totalTodos }}</div>
-    <div v-else>No todos, yet!</div>
+    <div>
+        <div v-if="totalTodos > 0"> Total todos: {{ totalTodos }}</div>
+        <div v-else>No todos, yet!</div>
+    </div>
 </template>
 
 <script setup>
