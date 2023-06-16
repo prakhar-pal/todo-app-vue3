@@ -4,7 +4,7 @@
             <li
                 v-for="(link, index) in navLinks"
                 :class="getClassForLinkItem(link, index)"
-                class="nav-link">
+                class="px-1.5 border-b-2 border-solid">
                 <router-link :to="link.path">{{ link.title}}</router-link>
             </li>
         </ul>
@@ -13,10 +13,6 @@
 </template>
 
 <style scoped>
-    li.nav-link {
-        padding: 0 5px;
-        border-bottom: 2px solid transparent;
-    }
     li.active {
         border-bottom-color: teal;
     }

@@ -16,7 +16,12 @@
                 <td>{{ todo.id }}</td>
                 <td>{{ todo.text }}</td>
                 <td class="float-right">
-                    <button @click="deleteTodo(todo.id)" class="btn-delete-todo mr-2 inline-block">-</button>
+                    <button
+                        @click="deleteTodo(todo.id)"
+                        class="btn-delete-todo mr-2 w-6 h-6 rounded-full transition-all bg-red-600 hover:bg-red-800 text-white"
+                    >
+                        {{ "-" }}
+                    </button>
                     <button @click="onEditTodoClick(todo.id)" class="bg-black text-white px-4">Edit</button>
                 </td>
             </tr>
@@ -28,24 +33,6 @@
         <TodoForm submit-btn-label="Edit" :initial-todo="editingTodo ? editingTodo.text : ''" @form-submitted="editTodo" />
     </div>
 </template>
-
-<style scoped>
-.todo-details .btn-delete-todo {
-    width: 1.5rem;
-    height: 1.5rem;
-    margin-left: 0.5rem;
-    border-radius: 50%;
-    transition: all 0.5s;
-    background-color: rgb(228, 3, 3);
-    color: white;
-}
-
-.todo-details:hover .btn-delete-todo {
-    display: inline;
-    background-color: rgb(200, 3, 0);
-}
-
-</style>
 
 <script setup>
 import { useStore } from 'vuex';
